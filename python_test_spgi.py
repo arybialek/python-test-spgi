@@ -145,7 +145,7 @@ def main(indicator: str, country: str, ignore_missing_start_values: bool = True)
 
     # Append the forecast dataframe to the dataframe with history data and save the result as a json
     history_with_forecast_df = pd.concat([df, forecast_df])
-    history_with_forecast_df.fillna(method="ffill", inplace=True)
+    history_with_forecast_df[["indicator", "country"]].fillna(method="ffill", inplace=True)
     history_with_forecast_df.to_json("output.json", orient="records", indent=4)
 
 
